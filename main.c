@@ -139,7 +139,35 @@ void blockcmp(void)
 void datecmp(void)
 
 {
+		struct tm* ptr1;
+		struct tm* ptr2;
+		time_t time1;
+		time_t time2;
+						
+		stat("text1", &stat1);
+		stat("text2", &stat2);
 
+		time1=stat1.st_mtime;
+		time2=stat2.st_mtime;
+
+		ptr1=localtime(&time1);
+		ptr2=localtime(&time2);
+		printf("time compare\n");
+
+		if(ptr1->tm_mon > ptr2->tm_mon)
+			printf("text1 is early\n");
+		else if(ptr1->tm_mon < ptr2->tm_mon)
+			printf("text2 is early\n");
+		else
+		{
+			if(ptr1->tm_mday > ptr2->tm_mday)
+				printf("text1 is early\n");
+			else if(ptr1->tm_mday < ptr2->tm_mday)
+				printf("text2 is early\n");
+			else
+				printf("same time\n");
+		}
+		return;
 }
 
  
