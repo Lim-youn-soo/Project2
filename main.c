@@ -110,11 +110,35 @@ void datecmp(void)
 
 }
 
- 
+void timecmp(void){ 
+        int time2_hour = time2->tm_hour;
+        int time2_min = time2->tm_min;
 
-void timecmp(void)
 
-{
+        stat("text1", &stat1);
+        time1 = localtime(&stat1.st_mtime);
+        int time1_hour = time1->tm_hour;
+        int time1_min = time1->tm_min;
 
+
+        printf("\ntime compare\n");
+
+        if(time1_hour < time2_hour){
+                printf("text2 is early\n");
+        }
+        else if(time1_hour > time2_hour){
+                printf("text1 is early\n");
+        }
+        else{
+                if(time1_min < time2_min){
+                        printf("text2 is early\n");
+                }
+                else if(time1_min > time2_min){
+                        printf("text1 is early\n");
+                }
+                else{
+                        printf("same time\n");
+                }
+        }
 }
 
